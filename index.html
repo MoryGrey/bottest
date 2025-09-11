@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Такси ПРЕСТИЖ — MiniApp</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	<link rel="stylesheet" href="styles.css" />
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+	<div id="app" class="theme">
+		<header>
+			<h1>Такси «ПРЕСТИЖ»</h1>
+		</header>
+
+		<main>
+			<section id="tab-order" class="tab active">
+				<div id="map"></div>
+				<form id="order-form" class="panel">
+					<div class="field">
+						<label>Откуда</label>
+						<input id="from-input" type="text" placeholder="Адрес отправления" autocomplete="off" />
+					</div>
+					<div class="field">
+						<label>Куда</label>
+						<input id="to-input" type="text" placeholder="Адрес назначения" autocomplete="off" />
+					</div>
+					<div class="row">
+						<div class="field grow">
+							<label>Тариф</label>
+							<select id="tariff">
+								<option value="econom">Эконом</option>
+								<option value="student">Студент</option>
+								<option value="kids">С детьми</option>
+								<option value="vip">VIP тариф (межгород +30%)</option>
+							</select>
+						</div>
+						<div class="field grow">
+							<label>Оплата</label>
+							<select id="payment">
+								<option value="cash">Наличными</option>
+								<option value="card">Перевод</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" id="submit-btn">Заказать</button>
+				</form>
+			</section>
+
+			<section id="tab-profile" class="tab">
+				<form id="profile-form" class="panel">
+					<div class="row">
+						<div class="field grow">
+							<label>Имя</label>
+							<input id="name" type="text" />
+						</div>
+						<div class="field grow">
+							<label>Телефон</label>
+							<input id="phone" type="text" />
+						</div>
+					</div>
+					<div class="field readonly">
+						<label>Статус</label>
+						<div id="status" class="pill">Клиент</div>
+					</div>
+					<div class="field readonly">
+						<label>Бесплатная поездка</label>
+						<div id="free-info">До бесплатной: — | Бесплатных: 0</div>
+					</div>
+					<button type="submit" id="save-profile">Сохранить</button>
+					<button type="button" id="support" class="secondary">Связаться с техподдержкой</button>
+				</form>
+			</section>
+
+			<section id="tab-history" class="tab">
+				<div class="panel">
+					<div class="segmented">
+						<button data-period="today" class="active">Сегодня</button>
+						<button data-period="week">Неделя</button>
+						<button data-period="all">Всё время</button>
+					</div>
+					<div id="history-list" class="list"></div>
+				</div>
+			</section>
+		</main>
+
+		<nav class="bottom">
+			<button class="nav-btn active" data-tab="order"><span>🚕</span><small>Заказать</small></button>
+			<button class="nav-btn" data-tab="history"><span>📜</span><small>История</small></button>
+			<button class="nav-btn" data-tab="profile"><span>👤</span><small>Профиль</small></button>
+		</nav>
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
